@@ -28,7 +28,7 @@ export default function RegisterScreen({navigation})  {
             console.log(authuser.user,"====",name,proURL)
             const userref =  db.collection("users").doc(authuser.user.email)
 
-           userref.set({uid:authuser.user.email}).then(()=>{
+           userref.set({uid:authuser.user.email,uname:name,upic: proURL}).then(()=>{
                     console.log("===========================","added")
                 }).catch((e)=>{alert(e)});
             

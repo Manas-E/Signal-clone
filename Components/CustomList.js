@@ -18,6 +18,7 @@ const CustomListItem = ({id,chatName,enterChat}  )=>{
 
     const [chatmessages,setchatmessages] =useState([]);
     const userref =  db.collection("users").doc(auth.currentUser.email)
+    const [sender  ,setsender]=useState({});
 
 
     useEffect(()=>{
@@ -28,10 +29,13 @@ const CustomListItem = ({id,chatName,enterChat}  )=>{
             }
 
             )
-
-            return unsubscribe;
+            const userdetails =  db.collection("users").doc(chatName).get().then(
+                (doc)=>{console.log(doc.data(),"77777777777777777777777")
+            setsender(doc.data())}
+            )
+            return unsubscribe, userdetails;
     },[])
-    console.log(chatName,"==========================");
+    console.log(sender.uname,"==========================");
 
         return (
             <ListItem key={id} onPress={()=>enterChat({id,chatName})} style={{backgroundColor:undefined}} bottomDivider>
@@ -40,7 +44,7 @@ const CustomListItem = ({id,chatName,enterChat}  )=>{
                 }} />
 
         <ListItem.Content>
-        <ListItem.Title style={{fontWeight:"800"}}>{chatmessages[0]?.displayName}</ListItem.Title>
+        <ListItem.Title style={{fontWeight:"800"}}>{sender.uname}</ListItem.Title>
        <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">{chatmessages[0]?.displayName} : {chatmessages[0]?.message}</ListItem.Subtitle>
         </ListItem.Content>    
 
