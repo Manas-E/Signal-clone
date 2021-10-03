@@ -23,12 +23,17 @@ export default function RegisterScreen({navigation})  {
     },[navigation]);
 
     const register= ()=>{
+
+        if(proURL.length >1000)
+            alert("Size matters! Please enter short url");
+        else{
+
         auth.createUserWithEmailAndPassword(email,password)
         .then((authuser)=>{
             console.log(authuser.user,"====",name,proURL)
             const userref =  db.collection("users").doc(authuser.user.email)
 
-           userref.set({uid:authuser.user.email}).then(()=>{
+           userref.set({uid:authuser.user.email,displayName: name, photoURL: proURL }).then(()=>{
                     console.log("===========================","added")
                 }).catch((e)=>{alert(e)});
             
@@ -44,6 +49,7 @@ export default function RegisterScreen({navigation})  {
                 
         })  
         .catch((e)=>{alert(e)})}
+    }
     {
         return (
             <KeyboardAvoidingView behaviour="padding" style={styles.container}>

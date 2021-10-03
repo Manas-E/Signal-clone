@@ -10,7 +10,6 @@ import { useState } from 'react';
 
 
 
-
 export default function HomeScreen({navigation}) {
 
     const [chats,setchats]= useState([]);
@@ -47,13 +46,14 @@ const enterChat =({id,chatName})=>{
 }
 
 
+
 useLayoutEffect(()=>{
 
     navigation.setOptions({
-        title:"Signal",
-        headerStyle:{backgroundColor:"#fff"},
-        headerTitleStyle: {color: "black", alignSelf:"center"},
-        headerTintColor: "black",
+        title:"Meteoroid",
+        headerStyle:{backgroundColor:"#F34573"},
+        headerTitleStyle: {color: "white", alignSelf:"center"},
+        headerTintColor: "white",
         headerLeft: ()=>(
             <View style={{marginLeft:20,backgroundColor:undefined}}>
                     <TouchableOpacity onPress={signOut} activeOpacity={0.5}>
@@ -64,10 +64,10 @@ useLayoutEffect(()=>{
         headerRight: ()=>(
             <View style={{flexDirection:"row",marginRight:20,justifyContent:"space-between",width:80}}>
             <TouchableOpacity>
-                <AntDesign name="camerao" size={24} color="black" /> 
+                <AntDesign name="camerao" size={24} color="white" /> 
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>{navigation.navigate("AddChat")}}>
-                <SimpleLineIcons name="pencil" size={24} color="black" />
+                <SimpleLineIcons name="pencil" size={24} color="white" />
             </TouchableOpacity>
             </View> 
         ),
@@ -81,10 +81,10 @@ console.log("=====================*********************",chats);
             <SafeAreaView>
                 <ScrollView>
 
-                    {chats.map(({id,data:{chatName}}) =>(
-      
-                    <CustomListItem key={id} id={id} chatName={chatName} style={styles.container} enterChat= {enterChat} />
-                    )
+                    {chats.map(({id,data:{chatName,displayName}}) =>(
+                <CustomListItem key={id} id={id} chatName={chatName} style={styles.container} enterChat= {enterChat} />
+                   
+                 )
 
                     )}
                 </ScrollView>
@@ -97,5 +97,6 @@ const styles = StyleSheet.create({
     container:{
         height:"100%",
 
-    }
+    },
+  
 })

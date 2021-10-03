@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Signaloid ",
+    "name": "Meteoroid",
     "slug": "stuffup",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/meteorite.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

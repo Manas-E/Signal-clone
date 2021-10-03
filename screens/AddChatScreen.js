@@ -21,11 +21,11 @@ import { auth, db } from '../firebase';
                     if(doc.exists)
                     {
                         userref.collection("chats").add({
-                            chatName: input
+                            chatName: doc.data().displayName,
                         }).then((docref)=>{
                             setChatRoomId(docref.id);
                             console.log(docref.id,"*************************************")
-                            userinput.collection("chats").doc(docref.id).set({chatName: auth.currentUser.email});
+                            userinput.collection("chats").doc(docref.id).set({chatName: auth.currentUser.displayName});
                             navigation.goBack();
                             console.log("===========================","added")
                         }).catch((e)=>{alert(e)});
