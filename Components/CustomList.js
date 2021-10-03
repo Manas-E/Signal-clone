@@ -18,6 +18,7 @@ const CustomListItem = ({id,chatName,enterChat}  )=>{
 
     const [chatmessages,setchatmessages] =useState([]);
     const userref =  db.collection("users").doc(auth.currentUser.email)
+    const [sender  ,setsender]=useState({});
 
     useEffect(()=>{
             const unsubscribe = userref.collection("chats").doc(id).collection("messages").orderBy("timestamp","desc")
@@ -27,8 +28,11 @@ const CustomListItem = ({id,chatName,enterChat}  )=>{
             }
 
             )
-
-            return unsubscribe;
+            const userdetails =  db.collection("users").doc(chatName).get().then(
+                (doc)=>{console.log(doc.data(),"77777777777777777777777")
+            setsender(doc.data())}
+            )
+            return unsubscribe, userdetails;
     },[])
     console.log(chatName,"<==========================");
 

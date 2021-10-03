@@ -94,11 +94,19 @@ const  sendMessage= ()=>{
             headerTitleAlign: "left",
             headerTitle: () =>(
                 <View style={{ flexDirection:"row",alignItems:"center"}}>
+<<<<<<< HEAD
                         <Avatar rounded source={{uri: route.params?.photoURL && "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTogFMFhYeEuZAYDnkc-jLsGknBtkMjh9KdQ&usqp=CAU"}} />
 
 
                         {/* <Text style={{color:"white", fontweight:"700",marginLeft:10}}>{route.params.chatName}</Text>  */}
                         <Text style={{color:"white", fontWeight:"700",marginLeft:10,fontSize:20}}>{route.params.chatName}</Text> 
+=======
+                        <Avatar rounded source={{uri:route.params.upic}} />
+
+
+                        {/* <Text style={{color:"white", fontweight:"700",marginLeft:10}}>{route.params.chatName}</Text>  */}
+                        <Text style={{color:"white", fontWeight:"700",marginLeft:10,fontSize:20}}>{route.params.displayName}      </Text> 
+>>>>>>> 793232cadca1689852e121fd7ac2f9f3ad95be7f
                 </View>
             ),
             headerLeft: ()=>(

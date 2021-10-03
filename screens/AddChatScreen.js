@@ -17,11 +17,15 @@ import { auth, db } from '../firebase';
             const userref =  db.collection("users").doc(auth.currentUser.email)
             await userinput.get().then(
                 (doc)=>{
-                    console.log(doc.data());
+                    console.log(doc.data(),"<-------------- this is added");
                     if(doc.exists)
                     {
                         userref.collection("chats").add({
+<<<<<<< HEAD
                             chatName: doc.data().displayName,
+=======
+                            chatName: doc.data().uname,
+>>>>>>> 793232cadca1689852e121fd7ac2f9f3ad95be7f
                         }).then((docref)=>{
                             setChatRoomId(docref.id);
                             console.log(docref.id,"*************************************")

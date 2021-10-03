@@ -14,6 +14,7 @@ export default function HomeScreen({navigation}) {
 
     const [chats,setchats]= useState([]);
     const userref =  db.collection("users").doc(auth.currentUser.email)
+    const [sender,setsender]=useState({});
 
     const signOut =()=>{
         auth.signOut().then(
@@ -31,17 +32,33 @@ export default function HomeScreen({navigation}) {
             })))
 
             })
-        
+      
         return unsubscribe;
+        
+
     }, [navigation])
 
-const enterChat =({id,chatName})=>{
-  
-    navigation.navigate("Chat",{
-        id:id,
-        chatName:chatName,
-        displayName:auth.currentUser.displayName,
-    })
+const enterChat = ({id,chatName})=>{
+
+     
+    var  a=  db.collection("users").doc(chatName).get().then(
+        (doc)=>{
+            console.log(doc.data(),"77777777777777777777777")
+            setsender(doc.data())
+
+            navigation.navigate("Chat",{
+                id:id,
+                chatName:chatName,
+                displayName: doc.data().uname,
+                upic: doc.data().upic,
+             })
+            
+        })
+
+       
+
+    
+   
 
 }
 
@@ -81,10 +98,17 @@ console.log("=====================*********************",chats);
             <SafeAreaView>
                 <ScrollView>
 
+<<<<<<< HEAD
                     {chats.map(({id,data:{chatName,displayName}}) =>(
                 <CustomListItem key={id} id={id} chatName={chatName} style={styles.container} enterChat= {enterChat} />
                    
                  )
+=======
+                    {chats.map(({id,data:{chatName}}) =>(
+      
+                    <CustomListItem key={id} id={id}  chatName={chatName} style={styles.container} enterChat= {enterChat} />
+                    )
+>>>>>>> 793232cadca1689852e121fd7ac2f9f3ad95be7f
 
                     )}
                 </ScrollView>
