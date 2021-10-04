@@ -34,8 +34,8 @@ const signin =()=>{
     return (
         <View behavior="padding" style={styles.container}>
             <StatusBar style="light"  />
-            <Image source={{uri: "https://img-premium.flaticon.com/png/128/560/premium/560860.png?token=exp=1633290926~hmac=f359aca69f9c8f540ba56580f0d25500"}}
-            style={{width:120,height:120,marginTop:40,
+            <Image source={require("./meteorite.png")}
+            style={{width:120,height:120,marginTop:20,
             }} />
         
         

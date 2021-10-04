@@ -21,15 +21,14 @@ import { auth, db } from '../firebase';
                     if(doc.exists)
                     {
                         userref.collection("chats").add({
-<<<<<<< HEAD
-                            chatName: doc.data().displayName,
-=======
-                            chatName: doc.data().uname,
->>>>>>> 793232cadca1689852e121fd7ac2f9f3ad95be7f
+                            chatUser: doc.data().uid,
+                            uname: doc.data().displayName,
+
                         }).then((docref)=>{
                             setChatRoomId(docref.id);
                             console.log(docref.id,"*************************************")
-                            userinput.collection("chats").doc(docref.id).set({chatName: auth.currentUser.displayName});
+                            userinput.collection("chats").doc(docref.id).set({chatUser: auth.currentUser.email,
+                                                                            uname: auth.currentUser.displayName,});
                             navigation.goBack();
                             console.log("===========================","added")
                         }).catch((e)=>{alert(e)});
@@ -53,7 +52,7 @@ import { auth, db } from '../firebase';
 
 
                 }); 
-
+                
 
 
 

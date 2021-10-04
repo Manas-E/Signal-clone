@@ -38,19 +38,21 @@ export default function HomeScreen({navigation}) {
 
     }, [navigation])
 
-const enterChat = ({id,chatName})=>{
+const enterChat = ({id,chatUser})=>{
 
      
-    var  a=  db.collection("users").doc(chatName).get().then(
+    var  a=  db.collection("users").doc(chatUser).get().then(
+
         (doc)=>{
             console.log(doc.data(),"77777777777777777777777")
             setsender(doc.data())
 
             navigation.navigate("Chat",{
                 id:id,
-                chatName:chatName,
-                displayName: doc.data().uname,
-                upic: doc.data().upic,
+                chatUser:chatUser ,
+                ...doc.data()
+              
+
              })
             
         })
@@ -98,17 +100,9 @@ console.log("=====================*********************",chats);
             <SafeAreaView>
                 <ScrollView>
 
-<<<<<<< HEAD
-                    {chats.map(({id,data:{chatName,displayName}}) =>(
-                <CustomListItem key={id} id={id} chatName={chatName} style={styles.container} enterChat= {enterChat} />
-                   
-                 )
-=======
-                    {chats.map(({id,data:{chatName}}) =>(
-      
-                    <CustomListItem key={id} id={id}  chatName={chatName} style={styles.container} enterChat= {enterChat} />
-                    )
->>>>>>> 793232cadca1689852e121fd7ac2f9f3ad95be7f
+                    {chats.map(({id,data:{chatUser,displayName}}) =>(
+                <CustomListItem key={id} id={id}  chatUser={chatUser} style={styles.container} enterChat= {enterChat} />
+
 
                     )}
                 </ScrollView>

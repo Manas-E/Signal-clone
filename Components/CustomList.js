@@ -14,11 +14,12 @@ import {Swipeable} from 'react-native-gesture-handler'
 
 
 
-const CustomListItem = ({id,chatName,enterChat}  )=>{
+const CustomListItem = ({id,chatUser,enterChat}  )=>{
 
     const [chatmessages,setchatmessages] =useState([]);
     const userref =  db.collection("users").doc(auth.currentUser.email)
-    const [sender  ,setsender]=useState({});
+    const [sender,setsender]=useState({});
+
 
     useEffect(()=>{
             const unsubscribe = userref.collection("chats").doc(id).collection("messages").orderBy("timestamp","desc")
@@ -28,22 +29,23 @@ const CustomListItem = ({id,chatName,enterChat}  )=>{
             }
 
             )
-            const userdetails =  db.collection("users").doc(chatName).get().then(
+            const userdetails =  db.collection("users").doc(chatUser).get().then(
+
                 (doc)=>{console.log(doc.data(),"77777777777777777777777")
             setsender(doc.data())}
             )
             return unsubscribe, userdetails;
     },[])
-    console.log(chatName,"<==========================");
+    console.log(chatUser,"<==========================");
 
         return (
-           <ListItem key={id} onPress={()=>enterChat({id,chatName})} style={{backgroundColor:undefined}} bottomDivider>
+           <ListItem key={id} onPress={()=>enterChat({id,chatUser})} style={{backgroundColor:undefined}} bottomDivider>
                 <Avatar  rounded source={{
-                    uri: chatmessages[0]?.photoURL         || "https://i.picsum.photos/id/404/200/300.jpg?hmac=1i6ra6DJN9kJ9AQVfSf3VD1w08FkegBgXuz9lNDk1OM"
+                    uri: chatmessages[0]?.photoURL  || "https://i.picsum.photos/id/404/200/300.jpg?hmac=1i6ra6DJN9kJ9AQVfSf3VD1w08FkegBgXuz9lNDk1OM"
                 }} />
 
         <ListItem.Content>
-        <ListItem.Title style={{fontWeight:"800"}}>{chatName}</ListItem.Title>
+        <ListItem.Title style={{fontWeight:"800"}}>{sender.displayName}</ListItem.Title>
        <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">{chatmessages[0]?.displayName  } : {chatmessages[0]?.message}</ListItem.Subtitle>
         </ListItem.Content>    
 
