@@ -42,6 +42,7 @@ const enterChat = ({id,chatUser})=>{
 
      
     var  a=  db.collection("users").doc(chatUser).get().then(
+
         (doc)=>{
             console.log(doc.data(),"77777777777777777777777")
             setsender(doc.data())
@@ -51,6 +52,7 @@ const enterChat = ({id,chatUser})=>{
                 chatUser:chatUser ,
                 ...doc.data()
               
+
              })
             
         })
@@ -100,8 +102,7 @@ console.log("=====================*********************",chats);
 
                     {chats.map(({id,data:{chatUser,displayName}}) =>(
                 <CustomListItem key={id} id={id}  chatUser={chatUser} style={styles.container} enterChat= {enterChat} />
-                   
-                 )
+
 
                     )}
                 </ScrollView>

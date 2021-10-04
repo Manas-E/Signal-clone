@@ -98,6 +98,7 @@ const  sendMessage= ()=>{
 
 
                         <Text style={{color:"white", fontWeight:"700",marginLeft:10,fontSize:20}}>{route.params.displayName}</Text> 
+
                 </View>
             ),
             headerLeft: ()=>(

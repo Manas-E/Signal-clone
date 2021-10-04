@@ -23,6 +23,7 @@ import { auth, db } from '../firebase';
                         userref.collection("chats").add({
                             chatUser: doc.data().uid,
                             uname: doc.data().displayName,
+
                         }).then((docref)=>{
                             setChatRoomId(docref.id);
                             console.log(docref.id,"*************************************")
