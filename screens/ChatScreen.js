@@ -32,7 +32,7 @@ const ChatScreen = ({navigation,route}) => {
     const [message,setmessage]=useState([]);
     const messageorientation = "desc";
     const userref =  db.collection("users").doc(auth.currentUser.email)
-    const userinput = db.collection("users").doc(route.params.chatName);
+    const userinput = db.collection("users").doc(route.params.chatUser);
 
 
     console.log(route.params)
@@ -94,11 +94,10 @@ const  sendMessage= ()=>{
             headerTitleAlign: "left",
             headerTitle: () =>(
                 <View style={{ flexDirection:"row",alignItems:"center"}}>
-                        <Avatar rounded source={{uri: route.params?.photoURL && "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTogFMFhYeEuZAYDnkc-jLsGknBtkMjh9KdQ&usqp=CAU"}} />
+                        <Avatar rounded source={{uri:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTogFMFhYeEuZAYDnkc-jLsGknBtkMjh9KdQ&usqp=CAU" && route.params?.photoURL  }} />
 
 
-                        {/* <Text style={{color:"white", fontweight:"700",marginLeft:10}}>{route.params.chatName}</Text>  */}
-                        <Text style={{color:"white", fontWeight:"700",marginLeft:10,fontSize:20}}>{route.params.chatName}</Text> 
+                        <Text style={{color:"white", fontWeight:"700",marginLeft:10,fontSize:20}}>{route.params.displayName}</Text> 
                 </View>
             ),
             headerLeft: ()=>(
@@ -203,7 +202,7 @@ const styles = StyleSheet.create({
     textInput:{
         color:"black",
         bottom:0,
-        height:40,
+        height:50,
         flex:1,
         marginRight:15,
         borderColor:"transparent",
@@ -212,6 +211,7 @@ const styles = StyleSheet.create({
         padding:10,
         color:"gray",
         borderRadius:30,
+        fontSize:20,
 
         
     },
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         width:"100%",
         padding:10,
-        paddingBottom:20,
+        paddingBottom:40,
     },
     receiverText:{ 
 
@@ -228,14 +228,16 @@ const styles = StyleSheet.create({
     marginLeft:15,
     marginBottom:15,
     fontWeight:"500",
-    fontSize:15},
+    fontSize:20,
+},
 
     senderText:{
         color:"white",
         marginLeft:15,
         marginBottom:15,
         fontWeight:"500",
-        fontSize:15
+        fontSize:20,
+
     },
     receiver:{
         padding:10,

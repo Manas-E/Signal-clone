@@ -17,15 +17,17 @@ import { auth, db } from '../firebase';
             const userref =  db.collection("users").doc(auth.currentUser.email)
             await userinput.get().then(
                 (doc)=>{
-                    console.log(doc.data());
+                    console.log(doc.data(),"<-------------- this is added");
                     if(doc.exists)
                     {
                         userref.collection("chats").add({
-                            chatName: doc.data().displayName,
+                            chatUser: doc.data().uid,
+                            uname: doc.data().displayName,
                         }).then((docref)=>{
                             setChatRoomId(docref.id);
                             console.log(docref.id,"*************************************")
-                            userinput.collection("chats").doc(docref.id).set({chatName: auth.currentUser.displayName});
+                            userinput.collection("chats").doc(docref.id).set({chatUser: auth.currentUser.email,
+                                                                            uname: auth.currentUser.displayName,});
                             navigation.goBack();
                             console.log("===========================","added")
                         }).catch((e)=>{alert(e)});
@@ -49,7 +51,7 @@ import { auth, db } from '../firebase';
 
 
                 }); 
-
+                
 
 
 
