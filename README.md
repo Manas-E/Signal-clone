@@ -28,6 +28,12 @@ Tech Used:
 
 ![signal-project](https://github.com/Manas-E/Signal-clone/blob/master/screenshots/signal_home.jpg)
 
+
+## New Chat 
+
+![signal-project](https://github.com/Manas-E/Signal-clone/blob/master/screenshots/signal_new.jpg)
+
+
 ## Chat
 
 ![signal-project](https://github.com/Manas-E/Signal-clone/blob/master/screenshots/signal_chat.jpg)
